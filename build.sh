@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 # Make sure the job dies if there is an error
 set -ex
