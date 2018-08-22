@@ -1,13 +1,15 @@
 ### JHW 2018
+from collections import defaultdict
+import random
+
 import numpy as np
+from scipy.special import expi
+import scipy.sparse
 import umap
-
-
 
 # This code from the excellent module at:
 # https://stackoverflow.com/questions/4643647/fast-prime-factorization-module
     
-import random
 
 _known_factors = {}    
 
@@ -131,7 +133,6 @@ def primefactors(n, sort=False):
     _known_factors[n] = result
     return result
 
-from collections import defaultdict
 
 def factorization(n):
     factors = defaultdict(int)
@@ -173,8 +174,6 @@ def lcm(a, b):
 ## One column for each unique prime factor
 ## One row for each number, 0=does not have this factor, 1=does have this factor (might be repeated)
 
-from scipy.special import expi
-import scipy.sparse
 
 def factor_vector_csr(n):
     ## approximate prime counting function (upper bound for the values we are interested in)
@@ -199,5 +198,7 @@ def factor_vector_csr(n):
 n = 1000000
 prime_factors = factor_vector_csr(n) 
 
-np.savez('prime_factors.npz', prime_factors=prime_factors)
+embedding = umap.UMAP(metric='cosine', n_epochs=500).fit_transform(prime_factors)
+np.savez('umap.npz', embedding=embedding)
+
 

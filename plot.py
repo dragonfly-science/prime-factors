@@ -1,5 +1,7 @@
+import numpy as np
 from matplotlib import pyplot as plt
-np.load('umap.npz')['embedding']
+
+embedding = np.load('umap.npz')['embedding']
 
 fig = plt.figure(figsize=(8,8))
 fig.patch.set_facecolor('black')
