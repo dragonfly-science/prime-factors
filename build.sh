@@ -1,9 +1,7 @@
-#!/bin/sh
-
-# Make sure the job dies if there is an error
+#!/bin/bash
 set -ex
+export DCMD=
 
-# Carry out the factorization
 make
 
 # Copy files to the output
