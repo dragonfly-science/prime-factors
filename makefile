@@ -1,6 +1,6 @@
 DATE := $(shell date +%Y-%m-%d)
 REGISTRY := docker.dragonfly.co.nz
-IMAGE := docker.dragonfly.co.nz/prime-factors:2018-08-22
+IMAGE := docker.dragonfly.co.nz/prime-factors:2018-08-23
 DCMD ?= docker run -it --rm --net=host --user=$$(id -u):$$(id -g) -e DCMD= -v$$(pwd)/:/work -w /work/ $(IMAGE)
 
 all: primes_umap_1e6_16k_smaller_pts.png

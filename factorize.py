@@ -7,9 +7,11 @@ from scipy.special import expi
 import scipy.sparse
 import umap
 
+# The number of points:
+
+N = 1000000    
 # This code from the excellent module at:
 # https://stackoverflow.com/questions/4643647/fast-prime-factorization-module
-    
 
 _known_factors = {}    
 
@@ -193,11 +195,8 @@ def factor_vector_csr(n):
     return scipy.sparse.csr_matrix((np.ones(len(indices)), indices, indptr))
 
 
-### Generate the matrix for 1 million integers
-
-n = 1000000
-prime_factors = factor_vector_csr(n) 
-
+### Generate the matrix
+prime_factors = factor_vector_csr(N) 
 embedding = umap.UMAP(metric='cosine', n_epochs=500).fit_transform(prime_factors)
 np.savez('umap.npz', embedding=embedding)
 
